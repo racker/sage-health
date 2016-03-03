@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Open+Sans:bold', rel='stylesheet')
+    link(href='/css/styles.css', rel='stylesheet')
+    link(rel='shortcut icon', href='/images/favicon.png', type='image/x-icon')
+  body
+    div(class='container')
+      did(class='row')
+        div(class='col-sm-12')
+          div(class='panel panel-default')
+            div(class='panel-heading')
+              img(src='/images/logo.png')
+            div(class='panel-body alert')
+              div(class='alert alert-danger') Oopsie, unable to retrieve health status.
+              ul(class="list-group")
+                li(class='list-group-item') Response status code :: #{status.statusCode}
+                li(class='list-group-item') Response body :: #{status.body}
+                li(class='list-group-item') Error :: #{status.body}

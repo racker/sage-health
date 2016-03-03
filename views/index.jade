@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Open+Sans:bold', rel='stylesheet')
+    link(href='/css/styles.css', rel='stylesheet')
+    link(rel='shortcut icon', href='/images/favicon.png', type='image/x-icon')
+  body
+    - var ob = JSON.parse(status)
+    div(class='container')
+      did(class='row')
+        div(class='col-sm-12')
+          div(class='panel panel-default')
+            div(class='panel-heading')
+              img(src='/images/logo.png')
+            table(class='table')
+              thead
+                tr
+                  th Dependency
+                  th Healthy
+                  th Details
+                  th Response Time
+                tbody
+                  - for(var prop in ob) {
+                    tr
+                      td(class='text-capitalize') #{prop}
+                      td
+                        - if(ob[prop].healthy)
+                          - if(ob[prop].healthy === 'unknown')
+                            span(class='label label-warning') #{ ob[prop].healthy }
+                          - else
+                            span(class='label label-success') #{ ob[prop].healthy }
+                        - else
+                          span(class='label label-danger') #{ ob[prop].healthy }
+                      td #{ ob[prop].details.message }
+                      td #{ ob[prop].details.responseTime }
+                  - }

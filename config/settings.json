@@ -1,0 +1,10 @@
+{
+  "app": {
+    "port": "4000"
+  },
+  "ri_health_check": {
+    "url": "https://intelligence.rackspace.com/health",
+    "username": "",
+    "password": ""
+  }
+}
