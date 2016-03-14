@@ -1,0 +1,6 @@
+health:
+  build: .
+  volumes:
+    - .:/srv/sage-health
+  ports:
+    - 4000:4000
