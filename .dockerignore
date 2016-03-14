@@ -1,0 +1,8 @@
+.*_history
+.git*
+.vagrant
+.config
+.local
+.cache
+.pki
+docker-compose.yml

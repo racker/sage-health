@@ -1,0 +1,9 @@
+health:
+  build: .
+  env_file: environment
+  environment:
+    NODE_ENV: development
+  volumes:
+    - .:/srv/sage-health
+  ports:
+    - 4000:4000
