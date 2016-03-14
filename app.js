@@ -4,7 +4,7 @@ var express = require('express'),
   router = express.Router(),
   request = require('request'),
   path = require('path'),
-  appConfig = require('./config/settings.json'),
+  appConfig = require('./config/settings'),
   timeout = require('connect-timeout');
 
 app = express();
