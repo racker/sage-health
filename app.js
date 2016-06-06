@@ -9,7 +9,7 @@ var express = require('express'),
 
 app = express();
 app.set('view engine', 'jade');
-app.use(timeout('5s'));
+app.use(timeout(appConfig.timeout+100));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'static')));
 app.set('port', appConfig.app.port || 3000);
@@ -24,6 +24,7 @@ app.get('/', function (req, res) {
 
   reqOptions = {
     url: healthConfig.url,
+    timeout: appConfig.timeout,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -32,17 +33,25 @@ app.get('/', function (req, res) {
   };
 
   request(reqOptions, function (error, response, body) {
-      var title = 'Rackspace Intelligence Health';
+      var statusCode,
+        title = 'Rackspace Intelligence Health';
       if (!error && response.statusCode == 200) {
         res.render('index', {
           title: title,
           status: body
         });
       } else {
+        if(response) {
+          statusCode = response.statusCode;
+          console.error('Bad response code from health check', statusCode);
+        }
+        if(error) {
+          console.error('Error fetching health check', error);
+        }
         res.render('error', {
           title: title,
           status: {
-            statusCode: response.statusCode,
+            statusCode: statusCode,
             body: body,
             error: error
           }
@@ -52,5 +61,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(appConfig.app.port, function () {
-  console.log('Health app listening on port ', appConfig.app.port, '!');
+  console.log('Health app listening on port', appConfig.app.port, '!');
 });
