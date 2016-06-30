@@ -19,8 +19,8 @@ app.get('/', function (req, res) {
   healthConfig = appConfig.ri_health_check;
 
   auth = "Basic " +
-    new Buffer(healthConfig.username + ":"
-      + healthConfig.password).toString("base64");
+    new Buffer(healthConfig.username + ":" +
+               healthConfig.password).toString("base64");
 
   reqOptions = {
     url: healthConfig.url,
