@@ -8,4 +8,4 @@ module.exports = {
     "password": process.env.HEALTH_APP_PASS || ""
   },
   "timeout": 20000
-}
+};
